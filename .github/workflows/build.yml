@@ -88,12 +88,13 @@ jobs:
         run: |
           docker build -t $docker_image .
           docker tag $docker_image $acr_fqdn/$docker_image
+          docker save -o $docker_image.tar $docker_image
         working-directory: WeatherAPI
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          input: $docker_image
+          input: /github/workspace/WeatherAPI/$docker_image.tar
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
