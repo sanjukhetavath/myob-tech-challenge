@@ -12,11 +12,12 @@ env:
   client_secret: ${{secrets.CLIENT_SECRET}}
   tenant_id: ${{secrets.TENANT_ID}}
   subscription_id: ${{secrets.SUBSCRIPTION_ID}}
-  sas_token: ${{secrets.SAS_TOKEN}}
   acr: "weathermyobacr"
   acr_fqdn: "weathermyobacr.azurecr.io"
   az_rg: "azure_infra_rg"
   docker_image: "weatherapi"
+  SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+  SONAR_HOST_URL: ${{secrets.SONAR_HOST_URL}}
 
 
 jobs:
@@ -41,7 +42,6 @@ jobs:
           echo "ARM_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}" >> $GITHUB_ENV
           echo "ARM_SUBSCRIPTION_ID=${{ secrets.SUBSCRIPTION_ID }}" >> $GITHUB_ENV
           echo "ARM_TENANT_ID=${{ secrets.TENANT_ID }}" >> $GITHUB_ENV
-          echo "ARM_SAS_TOKEN=${{ secrets.SAS_TOKEN }}" >> $GITHUB_ENV
           
       - name: Initalize Terraform
         run: terraform init
@@ -75,11 +75,30 @@ jobs:
           echo "ARM_SUBSCRIPTION_ID=${{ secrets.SUBSCRIPTION_ID }}" >> $GITHUB_ENV
           echo "ARM_TENANT_ID=${{ secrets.TENANT_ID }}" >> $GITHUB_ENV
           
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        with:
+          projectBaseDir: WeatherAPI
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+
       - name: Docker build
         run: |
           docker build -t $docker_image .
           docker tag $docker_image $acr_fqdn/$docker_image
         working-directory: WeatherAPI
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: $docker_image
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
 
       - name: Docker Login and Push
         run: |
