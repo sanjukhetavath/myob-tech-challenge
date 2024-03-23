@@ -65,7 +65,7 @@ No modules.
 
 | *GitHub Action overview* | *deployment-overview* |
 |------|------|
-| ![Actions](resources/github-actions-overview.PNG) | ![deployment](resources/deployment-overview.png)
+| ![Actions](resources/github-actions-overview.PNG) | ![deployment](resources/deployment-overview.PNG)
 ---
 # 8. Deployment
 ### GitHub Actions (Automated Process) -- Recommended
