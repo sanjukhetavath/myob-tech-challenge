@@ -121,7 +121,7 @@ $ terraform destroy
 To Access Technical Challenge URL depolyed in cloud foundry:
 
 ```shell
-url:
+url:https://myobdapp.azurewebsites.net/swagger/index.html
 ```
 # 10. Contact / Getting help
 Please reach me at  [Sanju Khetavath](mailto:rathodsanju399@gmail.com)
