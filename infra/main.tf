@@ -18,7 +18,6 @@ resource "azurerm_service_plan" "service-plan" {
   sku_name            = "P1v2"
 }
 
-
 resource "azurerm_linux_web_app" "app" {
   name                = var.appname
   resource_group_name = azurerm_resource_group.rg.name
@@ -28,8 +27,7 @@ resource "azurerm_linux_web_app" "app" {
   site_config {
     always_on        = "true"
     application_stack {
-      docker_image_name = var.docker_image
-      docker_registry_url = azurerm_container_registry.myacr.login_server
+      docker_image_name = "${azurerm_container_registry.myacr.login_server}/${var.docker_image}"
       docker_registry_username = azurerm_container_registry.myacr.admin_username
       docker_registry_password = azurerm_container_registry.myacr.admin_password
     }
