@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "${var.resource_prefix}-rg"
+  name     = var.az_rg
   location = var.location
 }
 
 resource "azurerm_container_registry" "myacr" {
-  name                = "${var.resource_prefix}acr"
+  name                = var.acr
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = "Standard"
@@ -12,9 +12,9 @@ resource "azurerm_container_registry" "myacr" {
 }
 
 resource "azurerm_container_app_environment" "myappenv" {
-  name                       = "${var.resource_prefix}environment"
-  location                   = azurerm_resource_group.rg.location
-  resource_group_name        = azurerm_resource_group.rg.name
+  name                = "${var.resource_prefix}environment"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
 resource "azurerm_container_app" "myapps" {

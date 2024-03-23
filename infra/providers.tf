@@ -7,10 +7,10 @@ terraform {
     }
   }
   backend "azurerm" {
-      resource_group_name  = "terraform-statefiles"
-      storage_account_name = "terraformremotestatefile"
-      container_name       = "myobcontainer"
-      key                  = "terraform.tfstate"
+    resource_group_name  = "terraform-statefiles"
+    storage_account_name = "terraformremotestatefile"
+    container_name       = "myobcontainer"
+    key                  = "terraform.tfstate"
   }
 }
 provider "azurerm" {

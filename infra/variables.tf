@@ -29,3 +29,15 @@ variable "location" {
   description = "Resource group Location"
   default     = "Australia East"
 }
+
+variable "acr" {
+  type        = string
+  description = "name of the acr"
+
+}
+
+variable "az_rg" {
+  type        = string
+  description = "name of resource group"
+
+}
