@@ -47,7 +47,7 @@ No modules.
 |------|------|
 | [azurerm_resource_group](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 | [azurerm_container_registry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry) | resource |
-| [azurerm_container_apps](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app) | resource |
+| [azurerm_linux_web_app](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/app_service) | resource |
 ---
 ## 6. Inputs
 
@@ -56,8 +56,8 @@ No modules.
 | <a name="input_rg-name"></a> [rg-name](#input\_azurerm\_api) | The Resource Group name | `string` | `"weathermyob-rg"` | yes |
 | <a name="input_location"></a> [location](#input\_azurerm\_app\_name) | The Resource Group Location | `string` | `"Australia East"` | yes |
 | <a name="input_container-registry"></a> [conatiner-registry](#input\_azurerm\_app\_name) | The conatiner registry name | `string` | `"weathermyobacr"` | yes |
-| <a name="input_container-app"></a> [conatiner-app](#input\_azurerm\_app\_name) | The conatiner app name | `string` | `"weathermyobapps"` | yes |
-| <a name="input_docker_image"></a> [docker\_image](#input\_docker_image) | Docker image to use | `string` | `` | yes |
+| <a name="input_container-app"></a> [azurerm_linux_web_app](#input\_azurerm\_app\_name) | The conatiner app name | `string` | `"myobdapp"` | yes |
+| <a name="input_docker_image"></a> [docker\_image](#input\_docker_image) | Docker image to use | `string` | `weatherapi` | yes |
 | <a name="input_docker_image_tag"></a> [docker_image_tag](#input\_docker_image_tag) | Docker image tag to use | `string` | `latest` | yes |
 
 # 7. High level architectural overview of deployment
@@ -121,10 +121,35 @@ $ terraform destroy
 To Access Technical Challenge URL depolyed in cloud foundry:
 
 ```shell
-url:https://myobdapp.azurewebsites.net/swagger/index.html
+url:(https://myobdapp.azurewebsites.net/swagger/index.html)
 ```
 # 10. Contact / Getting help
 Please reach me at  [Sanju Khetavath](mailto:rathodsanju399@gmail.com)
 
 # 11. License
 [License](./LICENSE.md) is MIT
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+No providers.
+
+## Modules
+
+No modules.
+
+## Resources
+
+No resources.
+
+## Inputs
+
+No inputs.
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
