@@ -33,11 +33,26 @@ variable "location" {
 variable "acr" {
   type        = string
   description = "name of the acr"
-
 }
 
-variable "az_rg" {
+variable "rgname" {
   type        = string
   description = "name of resource group"
+}
 
+variable "service-plan-name" {
+  type        = string
+  description = "service plan name"
+  default     = "myob_app_plan"
+}
+
+variable "appname" {
+  type        = string
+  description = "app name"
+  default     = "myobdapp"
+}
+
+variable "docker_image" {
+  type        = string
+  description = "the name of the docker image"
 }

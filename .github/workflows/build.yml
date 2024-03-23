@@ -16,6 +16,7 @@ env:
   acr: "weathermyobacr"
   acr_fqdn: "weathermyobacr.azurecr.io"
   az_rg: "azure_infra_rg"
+  docker_image: "weatherapi"
 
 
 jobs:
@@ -47,7 +48,7 @@ jobs:
         working-directory: infra
 
       - name: terraform plan
-        run: terraform plan -var="client_id=${{secrets.client_id}}" -var="client_secret=${{secrets.client_secret}}" -var="tenant_id=${{secrets.tenant_id}}" -var="subscription_id=${{secrets.subscription_id}}" -var="acr=$acr" -var="rgname=$az_rg" -out=tfplan
+        run: terraform plan -var="client_id=${{secrets.client_id}}" -var="client_secret=${{secrets.client_secret}}" -var="tenant_id=${{secrets.tenant_id}}" -var="subscription_id=${{secrets.subscription_id}}" -var="acr=$acr" -var="rgname=$az_rg" -var="docker_image=$docker_image" -out=tfplan
         working-directory: infra
 
       - name: terraform apply
@@ -77,13 +78,13 @@ jobs:
           
       - name: Docker build
         run: |
-          docker build -t pythonapp . -f DockerFile
-          docker tag pythonapp $acr_fqdn/app/pythonapp
-        working-directory: app
+          docker build -t $docker_image . -f DockerFile
+          docker tag $docker_image $acr_fqdn/$docker_image
+        working-directory: WeatherAPI
 
       - name: Docker Login and Push
         run: |
           docker login $acr_fqdn --username $client_id --password $client_secret
-          docker push $acr_fqdn/app/pythonapp
-        working-directory: app
+          docker push $acr_fqdn/$docker_image
+        working-directory: WeatherAPI
   
