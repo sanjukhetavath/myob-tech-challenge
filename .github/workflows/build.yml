@@ -94,12 +94,13 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          input: /github/workspace/WeatherAPI/$docker_image.tar
+          input: WeatherAPI/$docker_image.tar
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+
 
       - name: Docker Login and Push
         run: |
