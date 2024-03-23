@@ -105,3 +105,6 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+        env:
+          TRIVY_USERNAME: $client_id
+          TRIVY_PASSWORD: $client_secret  
