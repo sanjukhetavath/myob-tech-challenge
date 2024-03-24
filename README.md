@@ -1,4 +1,4 @@
-## **Terraform-weather-myob-app**
+## **weather-myob-app**
 
 This Terraform root module demonstrates deployment of myob TechChallengeApp to [Azure Cloud](https://login.microsoftonline.com/)
 
