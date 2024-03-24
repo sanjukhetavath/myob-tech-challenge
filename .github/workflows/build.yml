@@ -83,10 +83,15 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-      - name: Run Trivy vulnerability scanner
+      - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
         with:
-          projectBaseDir: WeatherAPI
+            scan-type: 'fs'
+            ignore-unfixed: true
+            format: 'sarif'
+            output: 'trivy-results.sarif'
+            severity: 'CRITICAL'
+  
 
       - name: Docker build
         run: |
