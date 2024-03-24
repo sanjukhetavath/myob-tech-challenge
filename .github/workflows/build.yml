@@ -83,6 +83,12 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
+      - name: Docker build
+        run: |
+          docker build -t $docker_image .
+          docker tag $docker_image $acr_fqdn/$docker_image
+        working-directory: WeatherAPI
+
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
         with:
@@ -91,13 +97,6 @@ jobs:
             format: 'sarif'
             output: 'trivy-results.sarif'
             severity: 'CRITICAL'
-  
-
-      - name: Docker build
-        run: |
-          docker build -t $docker_image .
-          docker tag $docker_image $acr_fqdn/$docker_image
-        working-directory: WeatherAPI
 
       - name: Docker Login and Push
         run: |
