@@ -92,7 +92,7 @@ $ terraform init
 Now you are ready to run terraform [plan](https://www.terraform.io/docs/commands/plan.html) with secrets vraiables :
 
 ```shell
-$ terraform plan -var="cf_org_name=${{secrets.CF_ORG_NAME}}" -var="cf_username=${{secrets.CF_USERNAME}}" -var="cf_password=${{secrets.CF_PASSWORD}}" -var="cf_space_id=${{secrets.CF_SPACE_ID}}" -out=tfplan
+$ terraform plan -var="client_id=${{secrets.client_id}}" -var="client_secret=${{secrets.client_secret}}" -var="tenant_id=${{secrets.tenant_id}}" -var="subscription_id=${{secrets.subscription_id}}" -var="acr=$acr" -var="rgname=$az_rg" -var="docker_image=$docker_image" -out=tfplan
 ```
 Terraform will calculate an execution plan and display all the actions it needs to perform to deploy app and components.
 
