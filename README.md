@@ -72,7 +72,6 @@ No modules.
 - Whenever new code is merged to the main branch then the GitHub action will be triggered automatically.
 - On successful build completion, Tech Challange App will be provisioned in Azure Cloud
 - The secret variables are configured in Github
-- Full workflow about provisioning Tech Challange App and available in the [](.github/workflows/build.yml)
 ### Manual Deployment
 
 ### Installing Terraform
