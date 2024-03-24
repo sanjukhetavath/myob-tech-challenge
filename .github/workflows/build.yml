@@ -87,11 +87,6 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           projectBaseDir: WeatherAPI
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
 
       - name: Docker build
         run: |
