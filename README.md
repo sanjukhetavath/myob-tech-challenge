@@ -129,27 +129,3 @@ Please reach me at  [Sanju Khetavath](mailto:rathodsanju399@gmail.com)
 # 11. License
 [License](./LICENSE.md) is MIT
 <!-- BEGIN_TF_DOCS -->
-## Requirements
-
-No requirements.
-
-## Providers
-
-No providers.
-
-## Modules
-
-No modules.
-
-## Resources
-
-No resources.
-
-## Inputs
-
-No inputs.
-
-## Outputs
-
-No outputs.
-<!-- END_TF_DOCS -->
