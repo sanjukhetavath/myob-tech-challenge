@@ -21,7 +21,7 @@ This Terraform root module demonstrates deployment of myob TechChallengeApp to [
   ---
 ## 1. What is being provisioned
 - Azure Conatiner Registry
-- Azure Conatiner Apps
+- Azure App Service
 - TechChallengeApp 
 ## 2. Requirements
 ---
@@ -72,7 +72,7 @@ No modules.
 - Whenever new code is merged to the main branch then the GitHub action will be triggered automatically.
 - On successful build completion, Tech Challange App will be provisioned in Azure Cloud
 - The secret variables are configured in Github
-- Full workflow about provisioning Tech Challange App and available in the [](.github/workflows/servian-app-actions.yml)
+- Full workflow about provisioning Tech Challange App and available in the [](.github/workflows/build.yml)
 ### Manual Deployment
 
 ### Installing Terraform
@@ -80,7 +80,7 @@ Terraform should be installed on your system. [Instructions available here](http
 
 ```shell
 $ terraform version
-Terraform v1.0.7
+Terraform v1.1.7
 ```
 ### Initalizing Terraform
 Next Terraform needs to download the necessary provider plugins, modules and set up the initial (empty) state. Start by executing
@@ -121,7 +121,7 @@ $ terraform destroy
 To Access Technical Challenge URL depolyed in cloud foundry:
 
 ```shell
-url:(https://myobdapp.azurewebsites.net/swagger/index.html)
+https://myobdapp.azurewebsites.net/swagger/index.html
 ```
 # 10. Contact / Getting help
 Please reach me at  [Sanju Khetavath](mailto:rathodsanju399@gmail.com)
